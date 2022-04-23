@@ -48,6 +48,14 @@ public class ExpenseController {
         }
     }
 
+    @GetMapping("/expenses/{id}")
+    public String listExpenseDetails(@PathVariable("id") Long id, Model model) {
+        Expense expense = expenseService.findExpense(id);
+        System.out.println("Expense found: " + expense);
+        model.addAttribute("expense", expense);
+        return "details";
+    }
+
     @GetMapping("/expenses/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model) {
         Expense expense = expenseService.findExpense(id);
