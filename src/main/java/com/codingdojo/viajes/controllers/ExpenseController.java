@@ -23,7 +23,7 @@ public class ExpenseController {
         this.expenseService = expenseService;
     }
 
-    @GetMapping("/map")
+    @GetMapping("/")
     public String index() {
         return "index";
     }
