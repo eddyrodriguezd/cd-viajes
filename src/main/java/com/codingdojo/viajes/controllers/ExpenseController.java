@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class ExpenseController {
@@ -25,16 +26,20 @@ public class ExpenseController {
 
     @GetMapping("/")
     public String index() {
-        return "index";
+        return "redirect:/expenses";
     }
 
     @GetMapping("/expenses")
-    public String create(@ModelAttribute("expense") Expense expense) {
+    public String listExpenses(Model model, @ModelAttribute("expense") Expense expense) {
+        List<Expense> expenses = expenseService.getAllExpenses();
+        System.out.println("Expenses retrieved: " + expenses.size());
+        model.addAttribute("expenses", expenses);
         return "expenses";
     }
 
     @PostMapping("/expenses")
     public String create(@Valid @ModelAttribute("expense") Expense expense, BindingResult result) {
+        System.out.println("Expense <" + expense + "> will be created");
         if (result.hasErrors()) {
             return "index";
         } else {

@@ -24,12 +24,16 @@ public class Expense {
     private Long id;
 
     @NotNull
-    @Size(min = 3, max = 40)
-    private String expense;
+    @Size(min = 3, max = 60)
+    private String expenseName;
+
+    @NotNull
+    @Size(min = 5, max = 60)
+    private String vendor;
 
     @NotNull
     @Size(min = 5, max = 200)
-    private String vendor;
+    private String description;
 
     @DecimalMin(value = "0.01")
     private double amount;
@@ -43,10 +47,11 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(String expense, String vendor, double amount) {
-        this.expense = expense;
+    public Expense(String expenseName, String vendor, double amount, String description) {
+        this.expenseName = expenseName;
         this.vendor = vendor;
         this.amount = amount;
+        this.description = description;
     }
 
     public Long getId() {
@@ -57,12 +62,12 @@ public class Expense {
         this.id = id;
     }
 
-    public String getExpense() {
-        return expense;
+    public String getExpenseName() {
+        return expenseName;
     }
 
-    public void setExpense(String expense) {
-        this.expense = expense;
+    public void setExpenseName(String expenseName) {
+        this.expenseName = expenseName;
     }
 
     public String getVendor() {
@@ -79,6 +84,14 @@ public class Expense {
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getCreatedAt() {
@@ -98,4 +111,13 @@ public class Expense {
         this.updatedAt = new Date();
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "expense='" + expenseName + '\'' +
+                ", vendor='" + vendor + '\'' +
+                ", description='" + description + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
 }
