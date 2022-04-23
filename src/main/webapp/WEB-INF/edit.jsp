@@ -4,6 +4,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <h1>Edit Expense</h1>
+
+<a href="/expenses">Go back</a>
+
 <form:form action="/expenses/edit/${expense.id}" method="post" modelAttribute="expense">
     <input type="hidden" name="_method" value="put">
     <p>

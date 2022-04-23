@@ -25,7 +25,12 @@
                     <th><c:out value="${expense.vendor}"></c:out></th>
                     <th><c:out value="${expense.amount}"></</c:out></th>
                     <th><a href="/expenses/edit/${expense.id}">edit</a></th>
-                    <th><a href="#">delete</a></th>
+                    <th>
+                        <form action="/expenses/${expense.id}" method="post">
+                            <input type="hidden" name="_method" value="delete">
+                            <input type="submit" value="Delete">
+                        </form>
+                    </th>
                 </tr>
             </c:forEach>
         </tbody>
