@@ -36,7 +36,7 @@ public class Expense {
     private String description;
 
     @DecimalMin(value = "0.01")
-    private double amount;
+    private Double amount;
 
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -47,7 +47,7 @@ public class Expense {
     public Expense() {
     }
 
-    public Expense(String expenseName, String vendor, double amount, String description) {
+    public Expense(String expenseName, String vendor, Double amount, String description) {
         this.expenseName = expenseName;
         this.vendor = vendor;
         this.amount = amount;
@@ -78,11 +78,11 @@ public class Expense {
         this.vendor = vendor;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

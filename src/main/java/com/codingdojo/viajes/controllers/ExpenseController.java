@@ -32,20 +32,20 @@ public class ExpenseController {
     @GetMapping("/expenses")
     public String listExpenses(Model model, @ModelAttribute("expense") Expense expense) {
         List<Expense> expenses = expenseService.getAllExpenses();
-        System.out.println("Expenses retrieved: " + expenses.size());
         model.addAttribute("expenses", expenses);
         return "expenses";
     }
 
     @PostMapping("/expenses")
-    public String create(@Valid @ModelAttribute("expense") Expense expense, BindingResult result) {
-        System.out.println("Expense <" + expense + "> will be created");
+    public String create(@ModelAttribute("expense") @Valid Expense expense, BindingResult result) {
         if (result.hasErrors()) {
-            return "index";
-        } else {
-            expenseService.createExpense(expense);
-            return "redirect:/expenses";
+            System.out.println("Expense <" + expense + "> has errors so it won't be created");
         }
+        else {
+            System.out.println("Expense <" + expense + "> will be created");
+            expenseService.createExpense(expense);
+        }
+        return "redirect:/expenses";
     }
 
     @GetMapping("/expenses/{id}")
@@ -64,8 +64,9 @@ public class ExpenseController {
     }
 
     @PutMapping("/expenses/edit/{id}")
-    public String update(@Valid @ModelAttribute("expense") Expense expense, BindingResult result) {
+    public String update(@ModelAttribute("expense") @Valid Expense expense, BindingResult result) {
         if (result.hasErrors()) {
+            System.out.println("Expense <" + expense + "> has errors so it won't be updated");
             return "edit";
         } else {
             expenseService.updateExpense(expense);
