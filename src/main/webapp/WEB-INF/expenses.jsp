@@ -8,6 +8,10 @@
     <title>Expenses</title>
 </head>
 <body>
+    <c:if test="${error}">
+        <p>Error message: "${errorMessage}"</p>
+    </c:if>
+
     <h1>Safe Travels </h1>
     <table>
         <thead>
