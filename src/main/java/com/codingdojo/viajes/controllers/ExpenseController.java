@@ -48,20 +48,21 @@ public class ExpenseController {
         }
     }
 
-    @GetMapping("/expenses/{id}/edit")
+    @GetMapping("/expenses/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model) {
         Expense expense = expenseService.findExpense(id);
         model.addAttribute("expense", expense);
-        return "/expenses/edit.jsp";
+        return "edit";
     }
 
-    @PutMapping("/expenses/{id}")
+    @PutMapping("/expenses/edit/{id}")
     public String update(@Valid @ModelAttribute("expense") Expense expense, BindingResult result) {
         if (result.hasErrors()) {
-            return "/expenses/edit.jsp";
+            return "edit";
         } else {
             expenseService.updateExpense(expense);
-            return "redirect:/expense";
+            System.out.println("Expense updated: <" + expense + ">");
+            return "redirect:/expenses";
         }
     }
 

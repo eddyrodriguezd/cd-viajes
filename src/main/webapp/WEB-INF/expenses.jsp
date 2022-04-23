@@ -20,9 +20,9 @@
         <tbody>
             <c:forEach var="expense" items="${expenses}">
                 <tr>
-                    <th><a ><c:out value="${expense.expenseName}"></c:out></a></th>
-                    <th><a ><c:out value="${expense.vendor}"></c:out></a></th>
-                    <th><a ><c:out value="${expense.amount}"></</c:out></a></th>
+                    <th><a href="/expenses/edit/${expense.id}"><c:out value="${expense.expenseName}"></c:out></a></th>
+                    <th><c:out value="${expense.vendor}"></c:out></th>
+                    <th><c:out value="${expense.amount}"></</c:out></th>
                 </tr>
             </c:forEach>
         </tbody>
